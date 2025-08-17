@@ -1,0 +1,155 @@
+
+📘 ERP for Construction Company – Digital Marketing Documentation
+🏗️ Product Name: ConstructPro ERP
+Tagline: "Built for Builders – Manage Projects, People, and Profit with Ease"
+
+🧩 Core Modules & Features
+Below is how your features map into key modules. These are the sections digital marketers can highlight to educate users or prospects:
+
+🔧 Main Modules
+Module	Key Features
+Dashboard	Real-time overview of project KPIs, budgets, alerts, and progress
+Projects / Sites	Manage construction sites, monitor completion %, track site-specific data
+Workers	Maintain worker records, team assignments, safety training
+Vehicles	Fleet management, vehicle assignment, maintenance schedules
+Machinery	Track equipment usage, service logs, downtime reporting
+Inventory	Material tracking, stock levels, reorder alerts
+Procurement	Purchase requests, order tracking, vendor details
+Construction Forms	Submit and track site forms (daily logs, inspections, checklists)
+
+💼 HR & Finance
+Module	Key Features
+Salary Management	Automate payroll calculations, salary slips, TDS management
+Loan Management	Internal employee loans, approvals, repayment tracking
+Attendance	Shift schedules, biometric integration, absence alerts
+Accounting	Ledger, journal entries, income/expense reports
+Expenses	Monitor project-wise or department-wise expenses, approvals
+
+📊 Reports
+Module	Key Features
+Project Reports	Timeline tracking, budget vs actual reports
+Financial Reports	P&L, balance sheet, cash flow, taxes
+Investment Reports	Resource usage vs return, ROI calculation
+Accident Reports	Incident logs, causes, prevention measures
+Equipment Usage	Equipment log history, usage analysis
+
+⚙️ System Settings
+Module	Key Features
+User Management	Add/edit users, assign roles, deactivate accounts
+Roles & Permissions	Custom access control for different departments or hierarchies
+Audit Logs	Track system activity for compliance and reviews
+Settings	Configure tax rates, site preferences, localization (language, currency)
+
+🎯 Target Users
+🏗️ Construction Companies
+
+🏭 Civil Engineering Firms
+
+👷 Contractors & Subcontractors
+
+🛠️ Machinery Rental Providers
+
+🚧 Infrastructure Development Agencies
+
+📈 Benefits to Promote
+Benefit	Description
+All-in-One ERP	Single platform for HR, finance, equipment, inventory & reporting
+Cloud-Based	Access data from anywhere – onsite or offsite
+Modular & Scalable	Enable only what you need, add modules as your company grows
+Real-Time Data	Eliminate guesswork with live dashboards and alerts
+Nepal-Centric	Supports Nepali calendar, local tax rules, and insurance formats
+
+🧠 Suggested Marketing Content
+Website Headline Ideas:
+“Control Your Construction Business from One Dashboard”
+
+“Say Goodbye to Spreadsheets. Say Hello to ERP.”
+
+“Real-Time Construction Management Made Simple”
+
+Social Media Captions:
+"📊 Track progress, 🚧 monitor equipment, 💰 manage payroll – all in one ERP."
+
+"Is your construction business growing fast? You need ConstructPro to keep up. 💼"
+
+"Built for Nepal’s contractors. 🇳🇵 Built for efficiency. ⚙️"
+
+Ad Copy:
+Manage Your Construction Firm Like a Pro.
+Automate inventory, equipment, workers, payroll & reports – all under ConstructPro ERP. Start your free trial today!
+
+🔍 SEO Keywords
+Construction ERP software in Nepal
+
+Civil engineering project management tool
+
+Contractor ERP dashboard
+
+Inventory & payroll ERP
+
+Best ERP for building companies
+
+Road construction management software
+
+Nepali ERP for contractors
+
+📷 Assets to Use in Marketing
+Screenshots:
+
+Dashboard
+
+Project management interface
+
+Equipment tracking table
+
+Salary calculator
+
+Attendance log
+
+Demo Video:
+
+Quick 2-minute UI walkthrough
+
+Voice-over with real-world use case
+
+Include animations of modules in use
+
+Brochures / PDFs:
+
+One-pager highlighting features
+
+Case studies from existing clients
+
+Comparison with manual process
+
+💬 FAQs
+Q: Does this ERP support the Nepali calendar?
+A: Yes, it's built with localization for Nepal in mind.
+
+Q: Can I manage multiple construction sites?
+A: Absolutely. Each project/site has its own dashboard, workers, and budget.
+
+Q: Is mobile access available?
+A: Yes. It’s fully responsive and works across smartphones and tablets.
+
+Q: Can I control user access?
+A: Yes, with role-based access control for different teams.
+
+🧾 Optional Pricing Tiers (For Landing Page)
+Plan	Price/Month	Features
+Starter	NPR 5,000	2 projects, Inventory, Workers, Reports
+Professional	NPR 12,000	Unlimited projects, HR + Finance modules, Multi-user
+Enterprise	Custom	API integrations, Mobile app, Dedicated support, Cloud Hosting
+
+🛠️ Tech Stack (Show this in product pages or docs)
+Frontend: React + TailwindCSS + Lucide Icons
+
+Backend: Node.js, Prisma ORM
+
+Database: PostgreSQL
+
+Deployment: Railway, Vercel
+
+Security: Role-based access, JWT Auth
+
+Add-ons: REST API, Biometric attendance (optional), SMS/email integration
