@@ -21,10 +21,13 @@ import Settings from "./pages/Settings";
 import CompanyDetails from "./pages/ViewDetails";
 import JobDetails from "./pages/JobDetails";
 import UserDetails from "./pages/UserDetails";
-import ResumeForm from "./pages/ResumeForm";
 import ResumesListing from "./pages/Resumes";
 import CreateJob from "./pages/CreateJob";
 import CreateCompany from "./pages/CreateCompany";
+import NotificationsPage from "./pages/Notifications";
+import ReviewsPage from "./pages/Reviews";
+import FavoritesPage from "./pages/Favorites";
+import CVBuilder from "./pages/ResumeBuilder";
 
 
 const queryClient = new QueryClient();
@@ -49,8 +52,11 @@ const App = () => (
             <Route path="/users/:id" element={<UserDetails />} />
             <Route path="/posts" element={<Companies />} />
             <Route path="/resumes" element={<ResumesListing />} />
-            <Route path="/create-resumes" element={<ResumeForm />} />
+            <Route path="/resumes/create" element={<CVBuilder />} />
             <Route path="/applications" element={<Applications />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/reviews" element={<ReviewsPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
             {/* System */}
             <Route path="/roles" element={<Roles />} />
             <Route path="/settings" element={<Settings />} />

@@ -6,8 +6,12 @@ import {
   Briefcase,
   FileText,
   FileUser,
+  Bell,
+  ClipboardCheck,
+  Settings,
   ChevronDown,
   ChevronRight,
+  Star,
 } from "lucide-react";
 
 import {
@@ -33,6 +37,14 @@ const mainItems = [
   { title: "Resumes", url: "/resumes", icon: FileUser },
 ];
 
+// === New Modules (planned features) ===
+const extraItems = [
+  { title: "Reviews", url: "/reviews", icon: ClipboardCheck },
+  { title: "Notifications", url: "/notifications", icon: Bell },
+  { title: "Favorites", url: "/favorites", icon: Star },
+  { title: "Settings", url: "/settings", icon: Settings },
+];
+
 const getNavClass = ({ isActive }: { isActive: boolean }) =>
   isActive
     ? "bg-primary text-white font-semibold border-l-4 border-primary pl-2 shadow-sm"
@@ -44,6 +56,7 @@ export function AppSidebar() {
 
   // State for collapsible sidebar groups
   const [openMain, setOpenMain] = useState(true);
+  const [openExtra, setOpenExtra] = useState(true);
 
   return (
     <Sidebar
@@ -79,6 +92,38 @@ export function AppSidebar() {
             <SidebarGroupContent>
               <SidebarMenu className="space-y-1">
                 {mainItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <NavLink
+                        to={item.url}
+                        className={({ isActive }) =>
+                          `flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all ${getNavClass({ isActive })}`
+                        }
+                      >
+                        <item.icon className="h-4 w-4" />
+                        {!collapsed && <span>{item.title}</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          )}
+        </SidebarGroup>
+
+        {/* Extra Modules */}
+        <SidebarGroup>
+          <SidebarGroupLabel
+            onClick={() => setOpenExtra(!openExtra)}
+            className="flex justify-between items-center cursor-pointer mt-4"
+          >
+            <span>Extra Modules</span>
+            {!collapsed && (openExtra ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />)}
+          </SidebarGroupLabel>
+          {openExtra && (
+            <SidebarGroupContent>
+              <SidebarMenu className="space-y-1">
+                {extraItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
                       <NavLink
