@@ -12,6 +12,10 @@ import {
   ChevronDown,
   ChevronRight,
   Star,
+  BarChart3,
+  KeyRound,
+  UserCog,
+  Landmark,
 } from "lucide-react";
 
 import {
@@ -26,7 +30,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-// === Peeringo Modules - simplified ===
+// === Main Modules ===
 const mainItems = [
   { title: "Dashboard", url: "/", icon: Home },
   { title: "Applications", url: "/applications", icon: FileText },
@@ -37,12 +41,44 @@ const mainItems = [
   { title: "Resumes", url: "/resumes", icon: FileUser },
 ];
 
-// === New Modules (planned features) ===
-const extraItems = [
+// === HR & Hiring ===
+const hrItems = [
+  { title: "Interviews", url: "/interviews", icon: ClipboardCheck },
+];
+
+// === Engagement ===
+const engagementItems = [
   { title: "Reviews", url: "/reviews", icon: ClipboardCheck },
   { title: "Notifications", url: "/notifications", icon: Bell },
   { title: "Favorites", url: "/favorites", icon: Star },
+  { title: "Points", url: "/points", icon: Landmark },
+];
+
+// === Reports ===
+const reportItems = [
+  { title: "Reports", url: "/reports", icon: BarChart3 },
+];
+
+// === System / Settings ===
+const systemItems = [
+  { title: "Roles", url: "/roles", icon: KeyRound },
   { title: "Settings", url: "/settings", icon: Settings },
+];
+
+// === Admin ===
+const adminItems = [
+  { title: "Admin Dashboard", url: "/admin/dashboard", icon: UserCog },
+  { title: "Admin Users", url: "/admin/users", icon: Users },
+  { title: "Admin Companies", url: "/admin/companies", icon: FileUser },
+  { title: "Admin Jobs", url: "/admin/jobs", icon: Briefcase },
+  { title: "Admin Posts", url: "/admin/posts", icon: FileText },
+];
+
+// === Auth ===
+const authItems = [
+  { title: "Login", url: "/auth/login", icon: UserCog },
+  { title: "Register", url: "/auth/register", icon: UserCog },
+  { title: "Forgot Password", url: "/auth/forgot-password", icon: UserCog },
 ];
 
 const getNavClass = ({ isActive }: { isActive: boolean }) =>
@@ -54,9 +90,55 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
 
-  // State for collapsible sidebar groups
+  // States for collapsible sidebar groups
   const [openMain, setOpenMain] = useState(true);
-  const [openExtra, setOpenExtra] = useState(true);
+  const [openHR, setOpenHR] = useState(true);
+  const [openEngagement, setOpenEngagement] = useState(true);
+  const [openReports, setOpenReports] = useState(false);
+  const [openSystem, setOpenSystem] = useState(false);
+  const [openAdmin, setOpenAdmin] = useState(false);
+  const [openAuth, setOpenAuth] = useState(false);
+
+  const renderGroup = (
+    label: string,
+    items: { title: string; url: string; icon: any }[],
+    open: boolean,
+    toggle: () => void,
+    extraClass?: string
+  ) => (
+    <SidebarGroup>
+      <SidebarGroupLabel
+        onClick={toggle}
+        className={`flex justify-between items-center cursor-pointer ${extraClass || ""}`}
+      >
+        <span>{label}</span>
+        {!collapsed && (open ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />)}
+      </SidebarGroupLabel>
+      {open && (
+        <SidebarGroupContent>
+          <SidebarMenu className="space-y-1">
+            {items.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild>
+                  <NavLink
+                    to={item.url}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all ${getNavClass({
+                        isActive,
+                      })}`
+                    }
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {!collapsed && <span>{item.title}</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarGroupContent>
+      )}
+    </SidebarGroup>
+  );
 
   return (
     <Sidebar
@@ -79,69 +161,14 @@ export function AppSidebar() {
           </div>
         </div>
 
-        {/* Main Modules */}
-        <SidebarGroup>
-          <SidebarGroupLabel
-            onClick={() => setOpenMain(!openMain)}
-            className="flex justify-between items-center cursor-pointer"
-          >
-            <span>Main Modules</span>
-            {!collapsed && (openMain ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />)}
-          </SidebarGroupLabel>
-          {openMain && (
-            <SidebarGroupContent>
-              <SidebarMenu className="space-y-1">
-                {mainItems.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <NavLink
-                        to={item.url}
-                        className={({ isActive }) =>
-                          `flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all ${getNavClass({ isActive })}`
-                        }
-                      >
-                        <item.icon className="h-4 w-4" />
-                        {!collapsed && <span>{item.title}</span>}
-                      </NavLink>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          )}
-        </SidebarGroup>
-
-        {/* Extra Modules */}
-        <SidebarGroup>
-          <SidebarGroupLabel
-            onClick={() => setOpenExtra(!openExtra)}
-            className="flex justify-between items-center cursor-pointer mt-4"
-          >
-            <span>Extra Modules</span>
-            {!collapsed && (openExtra ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />)}
-          </SidebarGroupLabel>
-          {openExtra && (
-            <SidebarGroupContent>
-              <SidebarMenu className="space-y-1">
-                {extraItems.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <NavLink
-                        to={item.url}
-                        className={({ isActive }) =>
-                          `flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all ${getNavClass({ isActive })}`
-                        }
-                      >
-                        <item.icon className="h-4 w-4" />
-                        {!collapsed && <span>{item.title}</span>}
-                      </NavLink>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          )}
-        </SidebarGroup>
+        {/* Groups */}
+        {renderGroup("Main Modules", mainItems, openMain, () => setOpenMain(!openMain))}
+        {renderGroup("HR & Hiring", hrItems, openHR, () => setOpenHR(!openHR), "mt-4")}
+        {renderGroup("Engagement", engagementItems, openEngagement, () => setOpenEngagement(!openEngagement), "mt-4")}
+        {renderGroup("Reports", reportItems, openReports, () => setOpenReports(!openReports), "mt-4")}
+        {renderGroup("System", systemItems, openSystem, () => setOpenSystem(!openSystem), "mt-4")}
+        {renderGroup("Admin", adminItems, openAdmin, () => setOpenAdmin(!openAdmin), "mt-4")}
+        {renderGroup("Auth", authItems, openAuth, () => setOpenAuth(!openAuth), "mt-4")}
       </SidebarContent>
     </Sidebar>
   );
