@@ -78,7 +78,7 @@ const JobsPage = () => {
                     <TableCell>{new Date(job.postedDate).toLocaleDateString()}</TableCell>
                     <TableCell>{job.applicationsReceived}</TableCell>
                     <TableCell><Badge variant={getStatusColor(job.status)}>{job.status}</Badge></TableCell>
-                    <TableCell className="flex gap-1"><Button size="sm" variant="outline" onClick={() => navigate(`/jobs/${job.id}`)}><Eye className="h-3 w-3" /></Button><Button size="sm" variant="outline"><Edit className="h-3 w-3" /></Button></TableCell>
+                    <TableCell className="flex gap-1"><Button size="sm" variant="outline" onClick={() => navigate(`/admin/jobs/${job.id}`)}><Eye className="h-3 w-3" /></Button><Button size="sm" variant="outline"><Edit className="h-3 w-3" /></Button></TableCell>
                   </TableRow>
                 ))}
               </TableBody>

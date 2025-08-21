@@ -36,10 +36,6 @@ import Settings from "./pages/Settings";
 
 // --- Admin ---
 import AdminDashboard from "./pages/AdminDashboard";
-import AdminUsers from "./pages/AdminUsers";
-import AdminCompanies from "./pages/AdminCompanies";
-import AdminJobs from "./pages/AdminJobs";
-import AdminPosts from "./pages/AdminPosts";
 
 // --- Auth ---
 import LoginPage from "./pages/Login";
@@ -47,6 +43,9 @@ import RegisterPage from "./pages/Register";
 import ForgotPasswordPage from "./pages/ForgotPassword";
 import Reports from "./pages/Reports";
 import CreateInterview from "./pages/CreateInterview";
+import ApplicationDetailPage from "./pages/ApplicationDetails";
+import ResumeDetailPage from "./pages/ResumeDetails";
+import CompanyPostDetailPage from "./pages/PostDetail";
 
 const queryClient = new QueryClient();
 
@@ -60,17 +59,10 @@ const App = () => (
           <Routes>
             {/* Main Modules */}
             <Route path="/" element={<Dashboard />} />
-            <Route path="/companies" element={<Companies />} />
-            <Route path="/companies/create" element={<CreateCompany />} />
-            <Route path="/companies/:id" element={<CompanyDetails />} />
-            <Route path="/companies/:id/create-job" element={<CreateJob />} />
-            <Route path="/jobs" element={<Jobs />} />
-            <Route path="/jobs/:id" element={<JobDetails />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/users/:id" element={<UserDetails />} />
-            <Route path="/posts" element={<Posts />} />
             <Route path="/applications" element={<Applications />} />
+            <Route path="/applications/:id" element={<ApplicationDetailPage />} />
             <Route path="/resumes" element={<ResumesListing />} />
+            <Route path="/resumes/:id" element={<ResumeDetailPage />} />
             <Route path="/resumes/create" element={<CVBuilder />} />
 
             {/* Engagement */}
@@ -93,10 +85,16 @@ const App = () => (
 
             {/* Admin */}
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/admin/companies" element={<AdminCompanies />} />
-            <Route path="/admin/jobs" element={<AdminJobs />} />
-            <Route path="/admin/posts" element={<AdminPosts />} />
+            <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/users/:id" element={<UserDetails />} />
+            <Route path="/admin/companies" element={<Companies />} />
+            <Route path="/admin/companies/create" element={<CreateCompany />} />
+            <Route path="/admin/companies/:id" element={<CompanyDetails />} />
+            <Route path="/admin/companies/:id/create-job" element={<CreateJob />} />
+            <Route path="/admin/jobs" element={<Jobs />} />
+            <Route path="/admin/jobs/:id" element={<JobDetails />} />
+            <Route path="/admin/posts" element={<Posts />} />
+            <Route path="/admin/posts/:id" element={<CompanyPostDetailPage />} />
 
             {/* Auth */}
             <Route path="/auth/login" element={<LoginPage />} />

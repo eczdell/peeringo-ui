@@ -70,7 +70,7 @@ const UsersPage = () => {
                     <TableCell><Badge variant="outline">{u.role}</Badge></TableCell>
                     <TableCell>{u.resumesUploaded}</TableCell>
                     <TableCell>{new Date(u.joinDate).toLocaleDateString()}</TableCell>
-                    <TableCell className="flex gap-1"><Button size="sm" variant="outline" onClick={() => navigate(`/users/${u.id}`)}><Eye className="h-3 w-3" /></Button><Button size="sm" variant="outline"><Edit className="h-3 w-3" /></Button></TableCell>
+                    <TableCell className="flex gap-1"><Button size="sm" variant="outline" onClick={() => navigate(`/admin/users/${u.id}`)}><Eye className="h-3 w-3" /></Button><Button size="sm" variant="outline"><Edit className="h-3 w-3" /></Button></TableCell>
                   </TableRow>
                 ))}
               </TableBody>

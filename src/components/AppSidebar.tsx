@@ -34,10 +34,6 @@ import {
 const mainItems = [
   { title: "Dashboard", url: "/", icon: Home },
   { title: "Applications", url: "/applications", icon: FileText },
-  { title: "Companies", url: "/companies", icon: FileUser },
-  { title: "Jobs", url: "/jobs", icon: Briefcase },
-  { title: "Users", url: "/users", icon: Users },
-  { title: "Posts", url: "/posts", icon: FileText },
   { title: "Resumes", url: "/resumes", icon: FileUser },
 ];
 

@@ -1,12 +1,23 @@
-"use client"; // if using Next.js app router
+"use client";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // or use Next.js router
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Table,
   TableBody,
@@ -16,50 +27,84 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  Users,
-  Phone,
-  MapPin,
-  Calendar,
+  FileText,
+  Building,
   Search,
   Filter,
-  UserPlus,
+  Plus,
   Eye,
   Edit,
+  Trash2,
   CheckCircle,
-  XCircle
+  XCircle,
 } from "lucide-react";
-import { companies } from "@/data/mockData";
 
-const Companies = () => {
+// Mock Data (replace with API later)
+const posts = [
+  {
+    id: 1,
+    title: "We are hiring Frontend Engineers",
+    company: "TechCorp",
+    author: "Alice Johnson",
+    createdAt: "2025-08-01",
+    status: "published",
+    likes: 120,
+    comments: 34,
+  },
+  {
+    id: 2,
+    title: "Company Retreat Highlights",
+    company: "Buildify",
+    author: "Mark Smith",
+    createdAt: "2025-07-28",
+    status: "draft",
+    likes: 0,
+    comments: 0,
+  },
+  {
+    id: 3,
+    title: "New Product Launch",
+    company: "InnoSoft",
+    author: "Sarah Lee",
+    createdAt: "2025-07-15",
+    status: "published",
+    likes: 200,
+    comments: 50,
+  },
+];
+
+const CompanyPosts = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
-  const filteredCompanies = companies.filter(company => {
-    const matchesSearch = company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.owner.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === "all" || company.status === statusFilter;
+  const filteredPosts = posts.filter((post) => {
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.author.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === "all" || post.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
-  const getStatusColor = (status: string) => status === "active" ? "default" : "destructive";
+  const getStatusColor = (status: string) =>
+    status === "published" ? "default" : "secondary";
 
-  const totalCompanies = companies.length;
-  const activeCompanies = companies.filter(c => c.status === "active").length;
-  const inactiveCompanies = companies.filter(c => c.status === "inactive").length;
+  const totalPosts = posts.length;
+  const publishedPosts = posts.filter((p) => p.status === "published").length;
+  const draftPosts = posts.filter((p) => p.status === "draft").length;
 
   return (
     <div className="space-y-6 animate-fade-in p-6">
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Companies Management</h1>
-          <p className="text-muted-foreground">Manage all partner companies</p>
+          <h1 className="text-3xl font-bold text-foreground">Company Posts</h1>
+          <p className="text-muted-foreground">Manage posts created by companies</p>
         </div>
-        <Button className="bg-gradient-construction hover:bg-primary-hover shadow-construction">
-          <UserPlus className="h-4 w-4 mr-2" />
-          Add Company
+        <Button className="bg-gradient-construction shadow-construction">
+          <Plus className="h-4 w-4 mr-2" />
+          New Post
         </Button>
       </div>
 
@@ -67,10 +112,10 @@ const Companies = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="shadow-construction">
           <CardContent className="flex items-center gap-3">
-            <Users className="h-8 w-8 text-construction-primary" />
+            <FileText className="h-8 w-8 text-construction-primary" />
             <div>
-              <p className="text-2xl font-bold">{totalCompanies}</p>
-              <p className="text-sm text-muted-foreground">Total Companies</p>
+              <p className="text-2xl font-bold">{totalPosts}</p>
+              <p className="text-sm text-muted-foreground">Total Posts</p>
             </div>
           </CardContent>
         </Card>
@@ -79,8 +124,8 @@ const Companies = () => {
           <CardContent className="flex items-center gap-3">
             <CheckCircle className="h-8 w-8 text-status" />
             <div>
-              <p className="text-2xl font-bold text-status">{activeCompanies}</p>
-              <p className="text-sm text-muted-foreground">Active</p>
+              <p className="text-2xl font-bold text-status">{publishedPosts}</p>
+              <p className="text-sm text-muted-foreground">Published</p>
             </div>
           </CardContent>
         </Card>
@@ -89,8 +134,8 @@ const Companies = () => {
           <CardContent className="flex items-center gap-3">
             <XCircle className="h-8 w-8 text-danger" />
             <div>
-              <p className="text-2xl font-bold text-danger">{inactiveCompanies}</p>
-              <p className="text-sm text-muted-foreground">Inactive</p>
+              <p className="text-2xl font-bold text-danger">{draftPosts}</p>
+              <p className="text-sm text-muted-foreground">Drafts</p>
             </div>
           </CardContent>
         </Card>
@@ -105,9 +150,9 @@ const Companies = () => {
         </CardHeader>
         <CardContent className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search companies by name, owner, or location..."
+              placeholder="Search by title, company, or author..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -120,55 +165,61 @@ const Companies = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Status</SelectItem>
-              <SelectItem value="active">Active</SelectItem>
-              <SelectItem value="inactive">Inactive</SelectItem>
+              <SelectItem value="published">Published</SelectItem>
+              <SelectItem value="draft">Draft</SelectItem>
             </SelectContent>
           </Select>
         </CardContent>
       </Card>
 
-      {/* Companies Table */}
+      {/* Posts Table */}
       <Card className="shadow-construction">
         <CardHeader>
-          <CardTitle>Companies List ({filteredCompanies.length})</CardTitle>
+          <CardTitle>Posts List ({filteredPosts.length})</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          {filteredCompanies.length > 0 ? (
+          {filteredPosts.length > 0 ? (
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Company Name</TableHead>
-                  <TableHead>Owner</TableHead>
-                  <TableHead>Location</TableHead>
-                  <TableHead>Total Jobs</TableHead>
+                  <TableHead>Title</TableHead>
+                  <TableHead>Company</TableHead>
+                  <TableHead>Author</TableHead>
+                  <TableHead>Created At</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead>Contact</TableHead>
+                  <TableHead>Likes</TableHead>
+                  <TableHead>Comments</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredCompanies.map(company => (
-                  <TableRow key={company.id} className="hover:bg-muted/30">
-                    <TableCell>{company.name}</TableCell>
-                    <TableCell>{company.owner}</TableCell>
+                {filteredPosts.map((post) => (
+                  <TableRow key={post.id} className="hover:bg-muted/30">
+                    <TableCell>{post.title}</TableCell>
                     <TableCell className="flex items-center gap-1">
-                      <MapPin className="h-3 w-3 text-muted-foreground" />
-                      {company.location}
+                      <Building className="h-3 w-3 text-muted-foreground" />
+                      {post.company}
                     </TableCell>
-                    <TableCell>{company.totalJobs}</TableCell>
+                    <TableCell>{post.author}</TableCell>
+                    <TableCell>{post.createdAt}</TableCell>
                     <TableCell>
-                      <Badge variant={getStatusColor(company.status)}>{company.status}</Badge>
+                      <Badge variant={getStatusColor(post.status)}>{post.status}</Badge>
                     </TableCell>
-                    <TableCell className="flex items-center gap-1">
-                      <Phone className="h-3 w-3 text-muted-foreground" />
-                      {company.phoneNumber}
-                    </TableCell>
+                    <TableCell>{post.likes}</TableCell>
+                    <TableCell>{post.comments}</TableCell>
                     <TableCell className="flex gap-1">
-                      <Button variant="outline" size="sm" onClick={() => navigate(`/companies/${company.id}`)}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => navigate(`/posts/${post.id}`)}
+                      >
                         <Eye className="h-3 w-3" />
                       </Button>
                       <Button variant="outline" size="sm">
                         <Edit className="h-3 w-3" />
+                      </Button>
+                      <Button variant="outline" size="sm" className="text-danger">
+                        <Trash2 className="h-3 w-3" />
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -177,12 +228,12 @@ const Companies = () => {
             </Table>
           ) : (
             <div className="text-center py-8">
-              <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">No Companies Found</h3>
+              <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-foreground mb-2">No Posts Found</h3>
               <p className="text-muted-foreground">
                 {searchTerm || statusFilter !== "all"
                   ? "Try adjusting your filters"
-                  : "Add your first company to get started"}
+                  : "Create your first company post"}
               </p>
             </div>
           )}
@@ -192,5 +243,5 @@ const Companies = () => {
   );
 };
 
-export default Companies;
+export default CompanyPosts;
 

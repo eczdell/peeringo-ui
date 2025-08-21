@@ -50,7 +50,7 @@ const Companies = () => {
   const inactiveCompanies = companies.filter(c => c.status === "inactive").length;
 
   const handleClick = () => {
-    navigate("/companies/create"); // route for Create Company page
+    navigate("/admin/companies/create"); // route for Create Company page
   };
 
   return (
@@ -170,7 +170,7 @@ const Companies = () => {
                       {company.phoneNumber}
                     </TableCell>
                     <TableCell className="flex gap-1">
-                      <Button variant="outline" size="sm" onClick={() => navigate(`/companies/${company.id}`)}>
+                      <Button variant="outline" size="sm" onClick={() => navigate(`/admin/companies/${company.id}`)}>
                         <Eye className="h-3 w-3" />
                       </Button>
                       <Button variant="outline" size="sm">
